@@ -2,6 +2,8 @@
 
 Fournit un composant React pour afficher un *loader* 100&nbsp;% CSS.
 
+![resultat](oclock.gif)
+
 ## Installation
 
 Télécharger les fichiers dans un dossier `Oclock` et l'ajouter à votre dossier de composants (ex&nbsp;: `/src/components`).
