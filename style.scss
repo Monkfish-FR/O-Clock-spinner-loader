@@ -6,6 +6,11 @@ $time: 3s; // overwritten by props in ./index.js
 $width-loader-circle: 9rem; //
 $width-loader-inner: $width-loader-circle / 5;
 
+.o-clock,
+.o-clock * {
+  box-sizing: border-box;
+}
+
 .o-clock {
   align-items: center;
   background: #fff;
