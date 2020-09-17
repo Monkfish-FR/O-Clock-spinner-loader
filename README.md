@@ -153,3 +153,7 @@ Définit la taille du *loader* pour le CSS&nbsp;:
 ## Notes
 
 Le *loader* SVG montre un léger swing dû à un mauvais centrage de mon code SVG. Si ce comportement vous gêne, n'hésitez pas à modifier ce derrnier dans son [fichiers dédié](OclockSVGLogo.js).
+
+Attention aux *props* qui définissent notamment les couleurs de remplissage et de bordure.
+
+Pour transformer un SVG en composant React, je vous conseille ce site [svgviewer.dev](https://svgviewer.dev).
