@@ -2,50 +2,55 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './style.scss';
+import OclockCSS from './OclockCSS';
+import OclockSVG from './OclockSVG';
 
 const Oclock = ({
+  svg,
   duration,
   baseColor,
   accentColor,
   scale,
-}) => {
-  const circleStyles = {
-    borderColor: baseColor,
-    transform: `scale(${scale})`,
-  };
-  const innerStyles = {
-    animatioDuration: duration,
-    backgroundColor: accentColor,
-    borderColor: baseColor,
-  };
+  width,
+}) => (
+  <div className="oclock">
+    { svg && (
+      <OclockSVG
+        duration={duration}
+        baseColor={baseColor}
+        accentColor={accentColor}
+        width={width}
+      />
+    ) }
 
-  return (
-    <div className="o-clock">
-      <div
-        className="o-clock__circle"
-        style={circleStyles}
-      >
-        <div
-          className="o-clock__inner"
-          style={innerStyles}
-        />
-      </div>
-    </div>
-  );
-};
+    { !svg && (
+      <OclockCSS
+        duration={duration}
+        baseColor={baseColor}
+        accentColor={accentColor}
+        scale={scale}
+      />
+    ) }
+
+  </div>
+);
 
 Oclock.propTypes = {
+  svg: PropTypes.bool,
   duration: PropTypes.string,
   baseColor: PropTypes.string,
   accentColor: PropTypes.string,
   scale: PropTypes.number,
+  width: PropTypes.string,
 };
 
 Oclock.defaultProps = {
+  svg: true,
   duration: '3s',
   baseColor: '#101010',
   accentColor: '#e52354',
   scale: 1,
+  width: '9rem',
 };
 
 export default Oclock;

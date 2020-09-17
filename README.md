@@ -1,6 +1,6 @@
 # Loader O'Clock
 
-Fournit un composant React pour afficher un *loader* 100&nbsp;% CSS.
+Fournit un composant React pour afficher un *loader* ~~100&nbsp;% CSS~~ CSS ou SVG.
 
 ![resultat](oclock.gif)
 
@@ -18,10 +18,12 @@ Importer le composant dans votre application&nbsp;:
 
 Appeler le composant&nbsp;:
 
+### SVG (par défaut)
+
 ```js
   const App = () => (
     <main className="main">
-      <Oclock />
+      <Oclock svg /> {/* appel le loader SVG (défaut) */}
     </main>
   );
 ```
@@ -33,15 +35,51 @@ Appeler le composant&nbsp;:
         duration="1s"
         baseColor="#fffdd8"
         accentColor="#d83a37"
+        width="5rem"
+      />
+    </main> {/* appel le loader SVG personnalisé */}
+  );
+```
+
+### CSS
+
+```js
+  const App = () => (
+    <main className="main">
+      <Oclock svg={false} /> {/* appel le loader CSS */}
+    </main>
+  );
+```
+
+```js
+  const App = () => (
+    <main className="main">
+      <Oclock
+        svg={false}
+        duration="1s"
+        baseColor="#fffdd8"
+        accentColor="#d83a37"
         scale={1.5}
       />
-    </main>
+    </main> {/* appel le loader CSS personnalisé */}
   );
 ```
 
 ## Options
 
 Le composant peut être configuré via des *props*, toutes optionnelles.
+
+### *svg*
+
+Détermine le type de *loader* à afficher (SVG | CSS)&nbsp;:
+
+- format attendu&nbsp;: *boolean*
+- valeur par défaut&nbsp;: true
+
+```html
+<Oclock svg />
+<Oclock svg={false} />
+```
 
 ### *duration*
 
@@ -85,9 +123,22 @@ Définit la couleur d'accent (fod du cercle animé)&nbsp;:
 <Oclock baseColor="hsl(178, 46.5%, 61.2%)" />
 ```
 
+### *width*
+
+Définit la taille du *loader* pour le SVG&nbsp;:
+
+- format attendu&nbsp;: *string*
+- valeur par défaut&nbsp;: 9rem
+
+```html
+<Oclock width="5rem" />
+<Oclock width="200px" />
+<Oclock width="50%" />
+```
+
 ### *scale*
 
-Définit la taille du *loader*&nbsp;:
+Définit la taille du *loader* pour le CSS&nbsp;:
 
 - format attendu&nbsp;: *number*
 - valeur par défaut&nbsp;: 1
@@ -98,3 +149,7 @@ Définit la taille du *loader*&nbsp;:
 <Oclock scale={2} />
 <Oclock scale={0.2} />
 ```
+
+## Notes
+
+Le *loader* SVG montre un léger swing dû à un mauvais centrage de mon code SVG. Si ce comportement vous gêne, n'hésitez pas à modifier ce derrnier dans son [fichiers dédié](OclockSVGLogo.js).

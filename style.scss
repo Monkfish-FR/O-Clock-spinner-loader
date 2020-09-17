@@ -3,50 +3,63 @@ $color-accent: #e52354; // overwritten by props in ./index.js
 
 $time: 3s; // overwritten by props in ./index.js
 
-$width-loader-circle: 9rem; //
-$width-loader-inner: $width-loader-circle / 5;
+$width-loader: 9rem; // overwritten by props in ./index.js for SVG, for CSS, use scale
+$width-loader-spot: $width-loader / 5;
 
-.o-clock,
-.o-clock * {
-  box-sizing: border-box;
-}
-
-.o-clock {
+.oclock-css {
   align-items: center;
   background: #fff;
   display: flex;
   justify-content: center;
   margin-bottom: 3rem;
-  min-height: $width-loader-circle * 2;
+  min-height: $width-loader * 2;
   padding: 1rem;
   width: 100%;
 
-  &__circle{
-    border: ($width-loader-circle / 4) solid $color-base;
+  &__ring {
+    border: ($width-loader / 4) solid $color-base;
     border-radius: 50%;
-    height: $width-loader-circle;
+    height: $width-loader;
     position: absolute;
     transition: 0.5s;
-    width: $width-loader-circle;
+    width: $width-loader;
     z-index: 0;
   }
 
-  &__inner {
+  &__spot {
     animation: orbit $time linear infinite;
     background-color: $color-accent;
-    border: ($width-loader-inner / 4) solid $color-base;
+    border: ($width-loader-spot / 4) solid $color-base;
     border-radius: 50%;
-    height: $width-loader-inner;
+    height: $width-loader-spot;
     left: 50%;
-    margin-left: (-1 * $width-loader-inner) / 2;
-    margin-top: (-1 * $width-loader-inner) / 2;
+    margin-left: (-1 * $width-loader-spot) / 2;
+    margin-top: (-1 * $width-loader-spot) / 2;
     position: absolute;
     top: 50%;
-    width: $width-loader-inner;
+    width: $width-loader-spot;
+  }
+}
+
+.oclock-svg {
+  animation: rotation $time linear infinite;
+  height: $width-loader;
+  margin: 3rem auto;
+  transform-origin: center center;
+  width: $width-loader;
+
+  > svg {
+    height: 100%;
+    width: 100%;
   }
 }
 
 @keyframes orbit {
-    from { transform: rotate(-180deg) translateY($width-loader-circle / 2);}
-    to { transform: rotate(180deg) translateY($width-loader-circle / 2);}
+    from { transform: rotate(-180deg) translateY($width-loader / 2);}
+    to { transform: rotate(180deg) translateY($width-loader / 2);}
+}
+
+@keyframes rotation {
+  0% { transform: rotate(0deg);}
+  100% { transform: rotate(360deg);}
 }
